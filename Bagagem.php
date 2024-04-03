@@ -13,7 +13,7 @@ class Bagagem {
 
     public function __construct(float $peso, int $numBagagem, Usuario $usuario) {
 
-        $this->peso = $peso;
+        $this->peso = $pesodabagaem;
         $this->numBagagem = $numBagagem;
         $this->usuario = $usuario;
 
