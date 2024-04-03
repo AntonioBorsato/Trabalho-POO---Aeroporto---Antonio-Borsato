@@ -38,13 +38,6 @@ class Bagagem {
         }
         
     }
-    /*public function getDescPeso() : float {
-        if ($peso <= 15) {
-            echo "A bagagem ultrapassou o peso permitido";
-        } else {
-            echo "A bagagem está dentro do limite de peso";
-        }
-    }*/
 
     public function setPeso(float $peso): void {
 

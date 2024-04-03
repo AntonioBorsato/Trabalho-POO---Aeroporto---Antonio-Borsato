@@ -29,7 +29,8 @@ class Voo {
         $this->passageiros = [];
 
     }
-
+    
+    //IDEIA
     /*public function calculaTempoDoVoo(): String {
 
         $diferenca = $this->horarioSaida->diff($this->horarioChegada);
@@ -98,7 +99,7 @@ class Voo {
     
     }
 
-    public function getAeronave(): Aeronave{
+    public function getAeronave(): Aeronave {
 
         return $this->aeronave;
 

@@ -148,7 +148,7 @@ $aeroporto2->adicionarVoo($voo);
         <strong>Codigo Voo: </strong> <?= $voo->getCodigoVoo() ?> <br /> 
         <strong>Origem: </strong> <?= $voo->getOrigem() ?> <br /> 
         <strong>Destino: </strong> <?= $voo->getDestino() ?> <br />
-        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida(date_format($horarioSaidaVoo, 'H:i:s')) ?> <br />
+        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida() ?> <br />
         <strong>Horario de Chegada: </strong> <?= $voo->getHorarioChegada() ?> <br />
         <strong>Cod Aeronave do Voo: </strong> <?= $aeronave-> getCodigoAeronave() ?> <br />
         <strong>Tripulação: </strong> <?= $voo->getTripulacao() ?> <br />
