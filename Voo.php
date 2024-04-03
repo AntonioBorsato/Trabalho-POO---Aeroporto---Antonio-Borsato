@@ -7,17 +7,19 @@ require_once 'Passagem.php';
 
 class Voo {
 
-    private String $origem;
-    private String $destino;
-    private string $horarioSaida; 
-    private string $horarioChegada;
+    private string $codigoVoo;
+    private string $origem;
+    private string $destino;
+    private DateTime $horarioSaida; 
+    private DateTime $horarioChegada;
     private Aeronave $aeronave;
     private $tripulacao = array();
     private $passageiros = array();
 
 
-    public function __construct(String $origem, String $destino, string $horarioSaida, string $horarioChegada, Aeronave $aeronave) {
+    public function __construct(string $codigoVoo,string $origem, string $destino, DateTime $horarioSaida, DateTime $horarioChegada, Aeronave $aeronave) {
         
+        $this->codigoVoo = $codigoVoo;
         $this->origem = $origem;
         $this->destino = $destino;
         $this->horarioSaida = $horarioSaida;
@@ -35,6 +37,18 @@ class Voo {
         return ($diferenca->h * 60) + $diferenca->m . " minutos";
 
     }*/
+
+    public function getCodigoVoo():string {
+
+        return $this->codigoVoo;
+
+    }
+
+    public function setCodigoVoo(string $codigoVoo):void {
+
+        $this->codigoVoo = $codigoVoo;
+
+    }
 
     public function getOrigem(): string {
         
@@ -60,7 +74,7 @@ class Voo {
 
     }
 
-    public function getHorarioSaida(): string {
+    public function getHorarioSaida(): DateTime {
 
         return $this->horarioSaida;
 
@@ -72,7 +86,7 @@ class Voo {
 
     }
 
-    public function getHorarioChegada(): string {
+    public function getHorarioChegada(): DateTime {
 
         return $this->horarioChegada;
 
@@ -120,7 +134,16 @@ class Voo {
 
     }
 
+    //IDEIA
+    /*public function __toString(): string {
 
+        return sprintf (
 
-    
+            "Pessoas Presente no Voo:{\nPassageiros: %s\nTripulação: %s}",
+            $this->passageiros,
+            $this->tripulacao
+
+        );
+
+    }*/
 }

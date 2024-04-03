@@ -28,20 +28,25 @@ $bagagem2 = new Bagagem(20, 2, $usuario2);
 $bagagem3 = new Bagagem(14, 3, $usuario3);
 
 //Aeronave
-$aeronave = new Aeronave("Scaled Composites Stratolaunch", "853", Status:: EMUSO);
-$aeronave2 = new Aeronave("Boeing 747", "660", Status:: DISPONIVEL);
-$aeronave3 = new Aeronave("Air France 247", "500", Status:: MANUTENCAO);
-
+$aeronave = new Aeronave("Scaled Composites Stratolaunch", "853", Status:: EMUSO, "01");
+$aeronave2 = new Aeronave("Boeing 747", "660", Status:: DISPONIVEL, "02");
+$aeronave3 = new Aeronave("Air France 247", "500", Status:: MANUTENCAO, "03");
 
 //Voo
-$voo = new voo("Campo Mourão", "São Paulo", "20:00", "4:40", $aeronave2);
-$voo2 = new voo("Campo Mourão", "São Paulo", "20:00", "4:40", $aeronave);
-$voo3 = new voo("Campo Mourão", "São Paulo", "20:00", "4:40", $aeronave);
+$horarioSaidaVoo = new DateTime('2024-03-27 07:00:00');
+$horarioChegadaVoo = new DateTime('2024-03-27 14:00:00');
+$horarioSaidaVoo2 = new DateTime('2024-06-15 08:00:00');
+$horarioChegadaVoo2 = new DateTime('2024-06-15 19:00:00');
+$horarioSaidaVoo3 = new DateTime('2024-09-02 23:00:00');
+$horarioChegadaVoo3 = new DateTime('2024-09-03 04:00:00');
+$voo = new voo("01","Campo Mourão", "São Paulo", $horarioSaidaVoo, $horarioChegadaVoo , $aeronave2);
+$voo2 = new voo("02","Campo Mourão", "São Paulo", $horarioSaidaVoo2, $horarioChegadaVoo2, $aeronave);
+$voo3 = new voo("03","Campo Mourão", "São Paulo", $horarioSaidaVoo3, $horarioChegadaVoo3, $aeronave);
 
 //Passagem
-$passagem = new Passagem("01", 800, $voo, $usuario);
-$passagem2 = new Passagem("02", 800, $voo2, $usuario2);
-$passagem3 = new Passagem("03", 800, $voo3, $usuario3);
+$passagem = new Passagem("01", 1200, $voo, $usuario);
+$passagem2 = new Passagem("02", 600, $voo2, $usuario2);
+$passagem3 = new Passagem("03", 10000, $voo3, $usuario3);
 
 //Aeroporto
 $aeroporto = new Aeroporto("Aeroclube de Campo Mourão", "87302-970", "Aeroporto Coronel Geraldo Guia Aquino S/N, Campo Mourão, PR", 4);
@@ -51,8 +56,7 @@ $aeroporto->adicionarVoo($voo3);
 
 $aeroporto2 = new Aeroporto("Aeroporto de Congonhas", "24547-751", "São Paulo", 9);
 $aeroporto2->adicionarVoo($voo);
-$aeroporto2->adicionarVoo($voo2);
-$aeroporto2->adicionarVoo($voo3);
+
 
 
 ?>
@@ -79,14 +83,17 @@ $aeroporto2->adicionarVoo($voo3);
         <strong>Modelo: </strong> <?= $aeronave->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave->getCapacidade() ?> <br /> 
         <strong>Status: </strong> <?= $aeronave->getStatus()->value ?> <br /> 
+        <strong>Codigo Aeronave: </strong> <?= $aeronave->getCodigoAeronave() ?> <br /> 
         <br /> 
         <strong>Modelo: </strong> <?= $aeronave2->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave2->getCapacidade() ?> <br /> 
         <strong>Status: </strong> <?= $aeronave2->getStatus()->value ?> <br /> 
+        <strong>Codigo Aeronave: </strong> <?= $aeronave2->getCodigoAeronave() ?> <br /> 
         <br />
         <strong>Modelo: </strong> <?= $aeronave3->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave3->getCapacidade() ?> <br /> 
         <strong>Status: </strong> <?= $aeronave3->getStatus()->value ?> <br /> 
+        <strong>Codigo Aeronave: </strong> <?= $aeronave3->getCodigoAeronave() ?> <br /> 
         <h2>Tripulação</h2>
         <strong>Nome: </strong> <?= $tripulante->getNome() ?> <br /> 
         <strong>Email: </strong> <?= $tripulante->getEmail() ?> <br />
@@ -113,7 +120,7 @@ $aeroporto2->adicionarVoo($voo3);
         <strong>Endereço: </strong> <?= $usuario->getEndereco() ?> <br />
         <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem->validarBagagem($bagagem->getPeso()) ?> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem->getNumBagagem() ?> <br />
-        <strong>Preço da Passagem (Reais): </strong> <?= $passagem->getValor() ?> <br />
+        <strong>Preço da Passagem (Reais): </strong> <?= $passagem->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem->getBilhete() ?> <br />
         <br />
         <h2>Passageiro 2</h2>
@@ -124,7 +131,7 @@ $aeroporto2->adicionarVoo($voo3);
         <strong>Endereço: </strong> <?= $usuario2->getEndereco() ?> <br />
         <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem2->validarBagagem($bagagem2->getPeso()) ?> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem2->getNumBagagem() ?> <br />
-        <strong>Preço da Passagem (Reais): </strong> <?= $passagem2->getValor() ?> <br />
+        <strong>Preço da Passagem (Reais): </strong> <?= $passagem2->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem2->getBilhete() ?> <br />
         <br />
         <h2>Passageiro 3</h2>
@@ -135,14 +142,15 @@ $aeroporto2->adicionarVoo($voo3);
         <strong>Endereço: </strong> <?= $usuario3->getEndereco() ?> <br />
         <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem3->validarBagagem($bagagem3->getPeso()) ?> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem3->getNumBagagem() ?> <br />
-        <strong>Preço da Passagem (Reais): </strong> <?= $passagem3->getValor() ?> <br />
+        <strong>Preço da Passagem (Reais): </strong> <?= $passagem3->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem3->getBilhete() ?> <br />
-        <h2>Voos</h2>
+        <h2>Voo</h2>
+        <strong>Codigo Voo: </strong> <?= $voo->getCodigoVoo() ?> <br /> 
         <strong>Origem: </strong> <?= $voo->getOrigem() ?> <br /> 
         <strong>Destino: </strong> <?= $voo->getDestino() ?> <br />
-        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida() ?> <br />
+        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida(date_format($horarioSaidaVoo, 'H:i:s')) ?> <br />
         <strong>Horario de Chegada: </strong> <?= $voo->getHorarioChegada() ?> <br />
-        <strong>Aeronave ultilizada no Voo: </strong> <?= $aeronave->getModelo() ?> <br />
+        <strong>Cod Aeronave do Voo: </strong> <?= $aeronave-> getCodigoAeronave() ?> <br />
         <strong>Tripulação: </strong> <?= $voo->getTripulacao() ?> <br />
         <strong>Passageiros: </strong> <?= $voo->getPassageiros() ?> <br />
     </body>
