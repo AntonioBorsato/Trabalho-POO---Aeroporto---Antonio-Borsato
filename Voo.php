@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Aeroporto.php';
-require_once 'Aeroporto.php';
+require_once 'Aeronave.php';
 require_once 'Tripulante.php';
 require_once 'Passagem.php';
 
@@ -29,7 +29,7 @@ class Voo {
         $this->passageiros = [];
 
     }
-    
+
     //IDEIA
     /*public function calculaTempoDoVoo(): String {
 
