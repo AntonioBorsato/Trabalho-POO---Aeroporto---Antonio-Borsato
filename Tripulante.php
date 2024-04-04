@@ -2,6 +2,7 @@
 
 require_once "Usuario.php";
 require_once "enums/Cargo.php";
+require_once "Voo.php";
 
 class Tripulante extends Pessoa {
     

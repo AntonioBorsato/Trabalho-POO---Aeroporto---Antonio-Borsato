@@ -4,7 +4,7 @@ enum Cargo: String
 {
 
     case PILOTO = 'Piloto';
-    case COPILOTO = 'Co-piloto'; //DUVIDA COM JUSCELINO!!!!!!!!
+    case COPILOTO = 'Co-piloto'; 
     case AEROMOCA = 'Aeromoça';
 
 }

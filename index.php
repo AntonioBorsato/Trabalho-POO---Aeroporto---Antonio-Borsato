@@ -11,7 +11,6 @@ require_once "Aeroporto.php";
 require_once "Bagagem.php";
 require_once "Checkin.php";
 
-
 //Tripulantes
 $tripulante = new Tripulante("Antonio Borsato", "antonioborsatinho123@gmail.com", "159.255.978-84", "Licença de Voo", Cargo:: PILOTO);
 $tripulante2 = new Tripulante("Pedro Conrado", "pedroconradinho123@gmail.com", "005.389.678-08", "Licença de Voo", Cargo:: COPILOTO);
@@ -33,12 +32,13 @@ $aeronave2 = new Aeronave("Boeing 747", "660", Status:: DISPONIVEL, "02");
 $aeronave3 = new Aeronave("Air France 247", "500", Status:: MANUTENCAO, "03");
 
 //Voo
-$horarioSaidaVoo = new DateTime('2024-03-27 07:00:00');
-$horarioChegadaVoo = new DateTime('2024-03-27 14:00:00');
-$horarioSaidaVoo2 = new DateTime('2024-06-15 08:00:00');
-$horarioChegadaVoo2 = new DateTime('2024-06-15 19:00:00');
-$horarioSaidaVoo3 = new DateTime('2024-09-02 23:00:00');
-$horarioChegadaVoo3 = new DateTime('2024-09-03 04:00:00');
+$horarioSaidaVoo = new DateTime("2024-03-27 07:00:00");
+$horarioChegadaVoo = new DateTime("2024-03-27 14:00:00");
+$horarioSaidaVoo2 = new DateTime("2024-06-15 08:00:00");
+$horarioChegadaVoo2 = new DateTime("2024-06-15 19:00:00");
+$horarioSaidaVoo3 = new DateTime("2024-09-02 23:00:00");
+$horarioChegadaVoo3 = new DateTime("2024-09-03 04:00:00");
+$horarioSaidaVooString = $horarioSaidaVoo->format('Y-m-d H:i:s');
 $voo = new voo("01","Campo Mourão", "São Paulo", $horarioSaidaVoo, $horarioChegadaVoo , $aeronave2);
 $voo2 = new voo("02","Campo Mourão", "São Paulo", $horarioSaidaVoo2, $horarioChegadaVoo2, $aeronave);
 $voo3 = new voo("03","Campo Mourão", "São Paulo", $horarioSaidaVoo3, $horarioChegadaVoo3, $aeronave);
@@ -57,7 +57,9 @@ $aeroporto->adicionarVoo($voo3);
 $aeroporto2 = new Aeroporto("Aeroporto de Congonhas", "24547-751", "São Paulo", 9);
 $aeroporto2->adicionarVoo($voo);
 
-
+$voo->addTripulação($tripulante);
+$voo->addTripulação($tripulante2);
+$voo->addTripulação($tripulante3);
 
 ?>
 
@@ -148,10 +150,11 @@ $aeroporto2->adicionarVoo($voo);
         <strong>Codigo Voo: </strong> <?= $voo->getCodigoVoo() ?> <br /> 
         <strong>Origem: </strong> <?= $voo->getOrigem() ?> <br /> 
         <strong>Destino: </strong> <?= $voo->getDestino() ?> <br />
-        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida() ?> <br />
-        <strong>Horario de Chegada: </strong> <?= $voo->getHorarioChegada() ?> <br />
+        <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida()->format('Y-m-d H:i:s') ?> <br />
+        <strong>Horario de Chegada: </strong> <?= $voo->getHorarioChegada()->format('Y-m-d H:i:s') ?> <br />
+        <strong>Duração do Voo: </strong> <?= $voo->CalculaTempoVoo() ?> <br />
         <strong>Cod Aeronave do Voo: </strong> <?= $aeronave-> getCodigoAeronave() ?> <br />
-        <strong>Tripulação: </strong> <?= $voo->getTripulacao() ?> <br />
+        <strong>Tripulação: </strong> <?= $voo->printTripulacao() ?> <br />
         <strong>Passageiros: </strong> <?= $voo->getPassageiros() ?> <br />
     </body>
 </html>

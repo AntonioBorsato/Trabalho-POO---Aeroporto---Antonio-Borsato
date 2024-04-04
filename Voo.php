@@ -4,6 +4,7 @@ require_once 'Aeroporto.php';
 require_once 'Aeronave.php';
 require_once 'Tripulante.php';
 require_once 'Passagem.php';
+require_once 'Voo.php';
 
 class Voo {
 
@@ -29,15 +30,14 @@ class Voo {
         $this->passageiros = [];
 
     }
-
-    //IDEIA
-    /*public function calculaTempoDoVoo(): String {
+    
+    public function calculaTempoVoo(): String {
 
         $diferenca = $this->horarioSaida->diff($this->horarioChegada);
 
-        return ($diferenca->h * 60) + $diferenca->m . " minutos";
+        return ($diferenca->h) + $diferenca->m . " Horas";
 
-    }*/
+    }
 
     public function getCodigoVoo():string {
 
@@ -117,6 +117,18 @@ class Voo {
 
     }
 
+    public function printTripulacao() : void {
+        for ($i = 0; $i > count($this->tripulacao); $i++){
+
+        }
+    }
+
+    public function addTripulação(Tripulante $tripulante):void {
+
+        array_push($this->tripulacao, $tripulante);
+
+    }
+
     public function setTripulacao(array $tripulacao): void {
 
         $this->tripulacao = $tripulacao;
@@ -135,16 +147,4 @@ class Voo {
 
     }
 
-    //IDEIA
-    /*public function __toString(): string {
-
-        return sprintf (
-
-            "Pessoas Presente no Voo:{\nPassageiros: %s\nTripulação: %s}",
-            $this->passageiros,
-            $this->tripulacao
-
-        );
-
-    }*/
 }

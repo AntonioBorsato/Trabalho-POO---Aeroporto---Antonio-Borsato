@@ -1,5 +1,6 @@
 <?php
 
+require_once "Voo.php";
 require_once "Pessoa.php";
 
 class Usuario extends Pessoa {
