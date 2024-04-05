@@ -33,7 +33,7 @@ $aeronave2 = new Aeronave("Boeing 747", "660", Status:: DISPONIVEL, "02");
 $aeronave3 = new Aeronave("Air France 247", "500", Status:: MANUTENCAO, "03");
 
 //Voo
-$horarioSaidaVoo = new DateTime("2024-03-27 07:00:00");
+$horarioSaidaVoo = new DateTime("2024-03-27 12:00:00");
 $horarioChegadaVoo = new DateTime("2024-03-27 14:00:00");
 $horarioSaidaVoo2 = new DateTime("2024-06-15 08:00:00");
 $horarioChegadaVoo2 = new DateTime("2024-06-15 19:00:00");
@@ -58,8 +58,6 @@ $passagem3 = new Passagem("03", 10000, $voo3, $usuario3);
 //Aeroporto
 $aeroporto = new Aeroporto("Aeroclube de Campo Mourão", "87302-970", "Aeroporto Coronel Geraldo Guia Aquino S/N, Campo Mourão, PR", 4);
 $aeroporto->adicionarVoo($voo);
-$aeroporto->adicionarVoo($voo2);
-$aeroporto->adicionarVoo($voo3);
 
 $aeroporto2 = new Aeroporto("Aeroporto de Congonhas", "24547-751", "São Paulo", 9);
 $aeroporto2->adicionarVoo($voo);
@@ -68,6 +66,13 @@ $aeroporto2->adicionarVoo($voo);
 $Checkin = new Checkin($usuario, $passagem, $bagagem);
 $Checkin2 = new Checkin($usuario2, $passagem2, $bagagem2);
 $Checkin3 = new Checkin($usuario3, $passagem3, $bagagem3);
+
+$lat1 = -24.046; 
+$lon1 = -52.3838; 
+$lat2 = -23.5489; 
+$lon2 = -46.6388;
+
+$distancia = $voo->calcularDistancia($lat1, $lon1, $lat2, $lon2);
 
 ?>
 
@@ -92,17 +97,17 @@ $Checkin3 = new Checkin($usuario3, $passagem3, $bagagem3);
         <h2>Aeronaves</h2>
         <strong>Modelo: </strong> <?= $aeronave->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave->getCapacidade() ?> <br /> 
-        <strong>Status: </strong> <?= $aeronave->getStatus()->value ?> <br /> 
+        <strong>Status: </strong> <?= $aeronave->printaAeronaveDisponivel($aeronave) ?> <br /> 
         <strong>Codigo Aeronave: </strong> <?= $aeronave->getCodigoAeronave() ?> <br /> 
         <br /> 
         <strong>Modelo: </strong> <?= $aeronave2->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave2->getCapacidade() ?> <br /> 
-        <strong>Status: </strong> <?= $aeronave2->getStatus()->value ?> <br /> 
+        <strong>Status: </strong> <?= $aeronave2->printaAeronaveDisponivel($aeronave2) ?> <br /> 
         <strong>Codigo Aeronave: </strong> <?= $aeronave2->getCodigoAeronave() ?> <br /> 
         <br />
         <strong>Modelo: </strong> <?= $aeronave3->getModelo() ?> <br /> 
         <strong>Capacidade: </strong> <?= $aeronave3->getCapacidade() ?> <br /> 
-        <strong>Status: </strong> <?= $aeronave3->getStatus()->value ?> <br /> 
+        <strong>Status: </strong> <?= $aeronave3->printaAeronaveDisponivel($aeronave3) ?> <br /> 
         <strong>Codigo Aeronave: </strong> <?= $aeronave3->getCodigoAeronave() ?> <br /> 
         <h2>Tripulação</h2>
         <strong>Nome: </strong> <?= $tripulante->getNome() ?> <br /> 
@@ -158,6 +163,7 @@ $Checkin3 = new Checkin($usuario3, $passagem3, $bagagem3);
         <strong>Preço da Passagem (Reais): </strong> <?= $passagem3->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem3->getBilhete() ?> <br />
         <h2>Voo</h2>
+        <strong>Aeroporto: </strong> <?= $aeroporto->getNomeAeroporto() ?> <br /> 
         <strong>Codigo Voo: </strong> <?= $voo->getCodigoVoo() ?> <br /> 
         <strong>Origem: </strong> <?= $voo->getOrigem() ?> <br /> 
         <strong>Destino: </strong> <?= $voo->getDestino() ?> <br />
@@ -175,5 +181,6 @@ $Checkin3 = new Checkin($usuario3, $passagem3, $bagagem3);
             <li><?=$value->getNome()?></li> 
             <?php endforeach ?>
         <br />
+        <strong>Distancia da viagem: </strong> <?= round($distancia, 2) ?> <strong> Km </strong> <br />
     </body>
 </html>

@@ -54,10 +54,24 @@ class Aeronave  {
 
     }
 
-    public function getStatus() : Status {   
+    public function aeronaveDisponivel(): bool {
 
-        return $this->status ?? 'Inválido'; 
-          
+        return $this->status === Status::DISPONIVEL;
+
+    }
+
+    public function printaAeronaveDisponivel(Aeronave $aeronave) {
+
+        if ($aeronave->aeronaveDisponivel()) {
+
+            echo "A aeronave está disponível.";
+
+        } else {
+
+            echo "A aeronave não está disponível.";
+
+        }
+
     }
     
 }

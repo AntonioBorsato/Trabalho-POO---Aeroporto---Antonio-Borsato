@@ -24,22 +24,7 @@ class Bagagem {
         return $this->peso;
 
     }
-
-    /*public function validarBagagem(float $peso): string {
-
-        if ($peso > LIMITE_PESO) {
-            
-            return "A bagagem excede o limite de peso permitido de 15 Kg. Sua bagagem tem: " . $peso . " Kg";
-            
-        } else {
-            
-            return "A bagagem está dentro do limite de peso permitido de 15 Kg. Sua bagagem tem: " . $peso . " Kg";
-
-        }
-        
-    }*/
     
-
     public function setPeso(float $peso): void {
 
         $this->peso = $peso;
