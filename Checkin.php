@@ -32,6 +32,54 @@ class Checkin {
 
     }
 
+    public function validarCheckin(string $donoBagagem, string $nomeUsuario, float $pesoBagagem): bool {
+
+        if ($this->validarBagagem($pesoBagagem) === false) {
+
+            return false; 
+        }
+    
+        if ($donoBagagem === $nomeUsuario) {
+
+            return true; 
+
+        } else {
+
+            return false; 
+
+        }
+    }
+
+    public function validarBagagem(float $peso): bool {
+
+        if ($peso > LIMITE_PESO) {
+
+            echo "A bagagem excede o limite de peso permitido de 15 Kg. Sua bagagem tem: " . $peso . " Kg";
+
+            return false; 
+
+        } else {
+
+            echo "A bagagem está dentro do limite de peso permitido de 15 Kg. Sua bagagem tem: " . $peso . " Kg";
+
+            return true;
+        }
+    }
+
+    public function printaCheckin (string $donoBagagem, string $nomeUsuario, float $pesoBagagem) {
+
+        if ($this->validarCheckin($donoBagagem, $nomeUsuario, $pesoBagagem)) {
+            
+            echo " --- Passageiro autorizado para o voo.";
+
+        } else {
+
+            echo " --- Passageiro não autorizado para o voo.";
+            
+        }
+
+    }
+
     
 
 }

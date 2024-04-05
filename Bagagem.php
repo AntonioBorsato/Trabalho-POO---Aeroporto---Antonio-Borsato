@@ -25,7 +25,7 @@ class Bagagem {
 
     }
 
-    public function validarBagagem(float $peso): string {
+    /*public function validarBagagem(float $peso): string {
 
         if ($peso > LIMITE_PESO) {
             
@@ -37,7 +37,8 @@ class Bagagem {
 
         }
         
-    }
+    }*/
+    
 
     public function setPeso(float $peso): void {
 

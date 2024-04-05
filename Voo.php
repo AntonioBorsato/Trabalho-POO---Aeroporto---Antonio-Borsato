@@ -5,6 +5,7 @@ require_once 'Aeronave.php';
 require_once 'Tripulante.php';
 require_once 'Passagem.php';
 require_once 'Voo.php';
+require_once 'Usuario.php';
 
 class Voo {
 
@@ -114,16 +115,9 @@ class Voo {
     public function getTripulacao(): array {
 
         return $this->tripulacao;
-
     }
 
-    public function printTripulacao() : void {
-        for ($i = 0; $i > count($this->tripulacao); $i++){
-
-        }
-    }
-
-    public function addTripulação(Tripulante $tripulante):void {
+    public function addTripulação(Tripulante $tripulante): void {
 
         array_push($this->tripulacao, $tripulante);
 
@@ -138,6 +132,12 @@ class Voo {
     public function getPassageiros(): array {
 
         return $this->passageiros;
+
+    }
+
+    public function addPassageiros(Usuario $usuario): void {
+
+        array_push($this->passageiros, $usuario);
 
     }
 

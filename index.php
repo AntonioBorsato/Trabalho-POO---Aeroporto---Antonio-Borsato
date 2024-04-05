@@ -24,6 +24,7 @@ $usuario3 = new Usuario("Juscelino Impostor", "juscelininho123@gmail.com", "238.
 //Bagagem
 $bagagem = new Bagagem(10, 1, $usuario);
 $bagagem2 = new Bagagem(20, 2, $usuario2);
+//TESTE DA BAGAGEM COM MAIS DE 15 KG $bagagem2 = new Bagagem(20, 2, $usuario2);
 $bagagem3 = new Bagagem(14, 3, $usuario3);
 
 //Aeronave
@@ -39,9 +40,15 @@ $horarioChegadaVoo2 = new DateTime("2024-06-15 19:00:00");
 $horarioSaidaVoo3 = new DateTime("2024-09-02 23:00:00");
 $horarioChegadaVoo3 = new DateTime("2024-09-03 04:00:00");
 $horarioSaidaVooString = $horarioSaidaVoo->format('Y-m-d H:i:s');
-$voo = new voo("01","Campo Mourão", "São Paulo", $horarioSaidaVoo, $horarioChegadaVoo , $aeronave2);
-$voo2 = new voo("02","Campo Mourão", "São Paulo", $horarioSaidaVoo2, $horarioChegadaVoo2, $aeronave);
-$voo3 = new voo("03","Campo Mourão", "São Paulo", $horarioSaidaVoo3, $horarioChegadaVoo3, $aeronave);
+$voo = new voo("01","Campo Mourão", "São Paulo", $horarioSaidaVoo, $horarioChegadaVoo , $aeronave2, $usuario);
+$voo2 = new voo("02","Campo Mourão", "São Paulo", $horarioSaidaVoo2, $horarioChegadaVoo2, $aeronave, $usuario);
+$voo3 = new voo("03","Campo Mourão", "São Paulo", $horarioSaidaVoo3, $horarioChegadaVoo3, $aeronave, $usuario);
+$voo->addTripulação($tripulante);
+$voo->addTripulação($tripulante2);
+$voo->addTripulação($tripulante3);
+$voo->addPassageiros($usuario);
+$voo->addPassageiros($usuario2);
+$voo->addPassageiros($usuario3);
 
 //Passagem
 $passagem = new Passagem("01", 1200, $voo, $usuario);
@@ -57,9 +64,10 @@ $aeroporto->adicionarVoo($voo3);
 $aeroporto2 = new Aeroporto("Aeroporto de Congonhas", "24547-751", "São Paulo", 9);
 $aeroporto2->adicionarVoo($voo);
 
-$voo->addTripulação($tripulante);
-$voo->addTripulação($tripulante2);
-$voo->addTripulação($tripulante3);
+//Checkin
+$Checkin = new Checkin($usuario, $passagem, $bagagem);
+$Checkin2 = new Checkin($usuario2, $passagem2, $bagagem2);
+$Checkin3 = new Checkin($usuario3, $passagem3, $bagagem3);
 
 ?>
 
@@ -120,8 +128,9 @@ $voo->addTripulação($tripulante3);
         <strong>Cpf: </strong> <?= $usuario->getCpf() ?> <br />
         <strong>Cidade: </strong> <?= $usuario->getCidade() ?> <br />
         <strong>Endereço: </strong> <?= $usuario->getEndereco() ?> <br />
-        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem->validarBagagem($bagagem->getPeso()) ?> <br />
+        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem3->getPeso() ?> <strong>Kg</strong> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem->getNumBagagem() ?> <br />
+        <strong>Validar Checkin: </strong> <?= $Checkin->printaCheckin($bagagem->getUsuario()->getNome() ,$usuario->getNome(), $bagagem->getPeso())  ?> <br />
         <strong>Preço da Passagem (Reais): </strong> <?= $passagem->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem->getBilhete() ?> <br />
         <br />
@@ -131,9 +140,10 @@ $voo->addTripulação($tripulante3);
         <strong>Cpf: </strong> <?= $usuario2->getCpf() ?> <br />
         <strong>Cidade: </strong> <?= $usuario2->getCidade() ?> <br />
         <strong>Endereço: </strong> <?= $usuario2->getEndereco() ?> <br />
-        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem2->validarBagagem($bagagem2->getPeso()) ?> <br />
+        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem2->getPeso() ?> <strong>Kg</strong> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem2->getNumBagagem() ?> <br />
-        <strong>Preço da Passagem (Reais): </strong> <?= $passagem2->getValor() ?> <strong>R$</strong> <br />
+        <strong>Validar Checkin: </strong> <?= $Checkin->printaCheckin($bagagem2->getUsuario()->getNome() ,$usuario2->getNome(), $bagagem2->getPeso())  ?> <br />
+        <strong>Preço da Passagem (Reais): </strong> <?= $passagem2->getValor() ?>  <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem2->getBilhete() ?> <br />
         <br />
         <h2>Passageiro 3</h2>
@@ -142,8 +152,9 @@ $voo->addTripulação($tripulante3);
         <strong>Cpf: </strong> <?= $usuario3->getCpf() ?> <br />
         <strong>Cidade: </strong> <?= $usuario3->getCidade() ?> <br />
         <strong>Endereço: </strong> <?= $usuario3->getEndereco() ?> <br />
-        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem3->validarBagagem($bagagem3->getPeso()) ?> <br />
+        <strong>Peso da Bagagem (Kilos): </strong> <?= $bagagem3->getPeso() ?> <strong>Kg</strong> <br />
         <strong>Numero de Identificação: </strong> <?= $bagagem3->getNumBagagem() ?> <br />
+        <strong>Validar Checkin: </strong> <?= $Checkin3->printaCheckin($bagagem3->getUsuario()->getNome() ,$usuario3->getNome(), $bagagem3->getPeso()) ?> <br />
         <strong>Preço da Passagem (Reais): </strong> <?= $passagem3->getValor() ?> <strong>R$</strong> <br />
         <strong>Codigo da Passagem: </strong> <?= $passagem3->getBilhete() ?> <br />
         <h2>Voo</h2>
@@ -153,8 +164,16 @@ $voo->addTripulação($tripulante3);
         <strong>Horario de Saida: </strong> <?= $voo->getHorarioSaida()->format('Y-m-d H:i:s') ?> <br />
         <strong>Horario de Chegada: </strong> <?= $voo->getHorarioChegada()->format('Y-m-d H:i:s') ?> <br />
         <strong>Duração do Voo: </strong> <?= $voo->CalculaTempoVoo() ?> <br />
-        <strong>Cod Aeronave do Voo: </strong> <?= $aeronave-> getCodigoAeronave() ?> <br />
-        <strong>Tripulação: </strong> <?= $voo->printTripulacao() ?> <br />
-        <strong>Passageiros: </strong> <?= $voo->getPassageiros() ?> <br />
+        <strong>Cod Aeronave do Voo: </strong> <?= $voo->getAeronave()->getCodigoAeronave() ?> <br />
+        <strong>Tripulação: </strong>
+            <?php foreach ($voo->getTripulacao() as $value): ?>
+            <li><?=$value->getNome()?></li> 
+            <?php endforeach ?>
+            <br />
+        <strong>Passageiros: </strong> 
+            <?php foreach ($voo->getPassageiros() as $value): ?>
+            <li><?=$value->getNome()?></li> 
+            <?php endforeach ?>
+        <br />
     </body>
 </html>
