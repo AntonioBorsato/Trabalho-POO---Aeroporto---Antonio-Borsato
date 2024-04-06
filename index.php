@@ -24,7 +24,6 @@ $usuario3 = new Usuario("Juscelino Impostor", "juscelininho123@gmail.com", "238.
 //Bagagem
 $bagagem = new Bagagem(10, 1, $usuario);
 $bagagem2 = new Bagagem(20, 2, $usuario2);
-//TESTE DA BAGAGEM COM MAIS DE 15 KG $bagagem2 = new Bagagem(20, 2, $usuario2);
 $bagagem3 = new Bagagem(14, 3, $usuario3);
 
 //Aeronave

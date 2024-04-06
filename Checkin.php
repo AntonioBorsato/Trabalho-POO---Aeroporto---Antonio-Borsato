@@ -66,9 +66,9 @@ class Checkin {
         }
     }
 
-    public function printaCheckin (string $donoBagagem, string $nomeUsuario, float $pesoBagagem) {
+    public function printaCheckin (string $donoBagagem, string $usuario, float $pesoBagagem) {
 
-        if ($this->validarCheckin($donoBagagem, $nomeUsuario, $pesoBagagem)) {
+        if ($this->validarCheckin($donoBagagem, $usuario, $pesoBagagem)) {
             
             echo " --- Passageiro autorizado para o voo.";
 
